@@ -6,20 +6,10 @@ class btce
 {
   function tryLogin()
   {
-      $.ajax(
-        {url:domain+aF+"login.php",
-          cache:!1,
-          type:"POST",
-          data:
-            {
-              email:$("#email").val(),
-              password:$("#password").val(),
-              otp:$("#login-otp").val(),
-              PoW_nonce:$("#PoW_nonce").val()
-            },
-            success:userLogin,
-            //error:function(){alert("server error")},complete:function(){hideLoader()},dataType:"json"});return!1}
-          }
+    $request = new request('https://btc-e.com/ajax/login.php');
+    $arg = array("email" => $email, "password" => $password, "otp" => "-", "PoW_nonce" => "");
+    $res = $request->Post($arg)->Result();
+    
   }
   function userLogin(a)
   {

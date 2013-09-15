@@ -23,6 +23,7 @@ class request
     curl_setopt($curl, CURLOPT_POST, true);
     curl_setopt($curl, CURLOPT_POSTFIELDS, $post);
     $this->result = curl_exec($curl);
+    return $this;
   }
   
   public function Result()
