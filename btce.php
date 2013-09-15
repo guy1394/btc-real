@@ -20,10 +20,8 @@ class btce
 
     $request = new request('https://btc-e.com/ajax/login.php');
     $request->cookie = $this->cookie;
-    var_dump($request->cookie);
     $arg = array("email" => $email, "password" => $password, "otp" => $otp, "PoW_nonce" => $pow);
-    var_dump(http_build_query($arg));
-    $res = $request->Post(http_build_query($arg))->Result();
+    $res = $request->Post($arg)->Result();
     $this->cookie = $request->cookie;
     return json_decode($res, true);
   }
@@ -31,10 +29,8 @@ class btce
   public function Login()
   {
     $obj = $this->tryLogin();
-    var_dump($obj);
     $pow = $this->getPoW($obj['data']['work']['target'], $obj['data']['work']['data']);
     $obj = $this->tryLogin($pow);
-    var_dump($obj);
   }
 
   function getPoW($a, $b)
