@@ -9,7 +9,7 @@ class btce
     $request = new request('https://btc-e.com/ajax/login.php');
     $arg = array("email" => $email, "password" => $password, "otp" => "-", "PoW_nonce" => "");
     $res = $request->Post($arg)->Result();
-    
+    var_dump($res);
   }
   function userLogin(a)
   {
