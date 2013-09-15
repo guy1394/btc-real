@@ -6,7 +6,7 @@ class request
   private $url;
   private $obj;
   
-  public function __construct( $url, $get )
+  public function __construct( $url, $get = null )
   {
     assert($this->obj = curl_init());
     curl_setopt($curl, CURLOPT_URL, $url);
@@ -18,10 +18,10 @@ class request
     curl_close($curl);    
   }
   
-  public function Post()
+  public function Post( $post )
   {
     curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, "a=4&b=7");
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $post);
     $this->result = curl_exec($curl);
   }
   
