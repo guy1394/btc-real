@@ -6,6 +6,7 @@ include_once('config.php');
 error_reporting(E_ALL); ini_set('display_errors','On'); ini_set('display_startup_errors','On');
 class btce
 {
+  session_start();
   private $cookie;
   
   public function __btce()
