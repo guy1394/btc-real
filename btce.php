@@ -3,10 +3,11 @@
 include_once('request.php');
 include_once('config.php');
 
+session_start();
+
 error_reporting(E_ALL); ini_set('display_errors','On'); ini_set('display_startup_errors','On');
 class btce
 {
-  session_start();
   private $cookie;
   
   public function __btce()
@@ -25,6 +26,13 @@ class btce
     $password = $config->btce_password;
 
     $arg = array("email" => $email, "password" => $password, "otp" => $otp, "PoW_nonce" => $pow);
+	
+	if (isset($_SESSION["auth"]))
+		{ 
+            return $_SESSION["auth"];
+        }
+		
+        else
     return $this->BTCERequest('https://btc-e.com/ajax/login.php', $arg);
   }
   
