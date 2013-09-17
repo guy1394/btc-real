@@ -27,12 +27,8 @@ class btce
 
     $arg = array("email" => $email, "password" => $password, "otp" => $otp, "PoW_nonce" => $pow);
 	
-	if (isset($_SESSION["auth"]))
-		{ 
-            return $_SESSION["auth"];
-        }
-		
-        else
+	$_SESSION['email'] = $email;
+	$_SESSION['password'] = $password;
     return $this->BTCERequest('https://btc-e.com/ajax/login.php', $arg);
   }
   
