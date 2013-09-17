@@ -3,7 +3,7 @@
   ,
   "btce_password" : "password"
   ,
-  "qiwi_success_url" : "http://btc-real.com/success_url"
+  "qiwi_success_url" : "http://btc-real.com/success_url/"
   ,
-  "qiwi_fail_url" : "http://btc-real.com/fail_url"
+  "qiwi_fail_url" : "http://btc-real.com/fail_url/"
 }
