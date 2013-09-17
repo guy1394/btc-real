@@ -66,6 +66,17 @@ class btce
     var_dump($params);
     var_dump($redirect);
   }
+  
+  public function GetOrders()
+  {
+    $arg = array("act" => "orders_update", "pair" => 17);
+    return $this->BTCERequest('https://btc-e.com/ajax/order.php', $arg);
+  }
+  
+  public function GetMinPrice()
+  {
+    return $this->GetOrders()['min'];
+  }
 
   function getPoW($a, $b)
   {
