@@ -77,6 +77,39 @@ class btce
   {
     return $this->GetOrders()['min'];
   }
+  
+  public function BuyBitcoin( $rur_amount, $price )
+  {
+    assert(false); // need token $token
+    $btc_count = $rur_amount / $price;
+    $arg = array("trade" => "buy", "btc_count" => $btc_count, "btc_price" => $price, "pair" => 17, "token" => $token);
+    $obj = $this->BTCERequest('https://btc-e.com/ajax/order.php', $arg);
+    assert(false); // i dont really know what expect here
+  }
+  
+  public function WithdrawBitcoin( $address, $amount )
+  {
+    assert(false); // need token $token
+    $arg = array("act" => "withdraw", "sum" => $amount, "address" => $address, "coin_id" => 1, "token" => $token, "otp" => 0);
+    $obj = $this->BTCERequest('https://btc-e.com/ajax/coins.php', $arg);
+    assert(false);
+  }
+  
+  public function TransHistory()
+  {
+    assert(false); // need token $token
+    $arg = array("method" => "TransHistory", "nonce" => time(), "since" => time() - 3600 * 72, "token" => $token);
+    $obj = $this->BTCERequest('https://btc-e.com/tapi', $arg);
+    return $obj['return'];
+  }
+  
+  public function SearchAmountInHistory( $amount )
+  {
+    foreach ($this->TransHistory() as $id => $trans)
+      if ($trans['currency'] == 'RUR' && $trans['amount'] == $amount)
+        return $id;
+    return false;
+  }
 
   function getPoW($a, $b)
   {
