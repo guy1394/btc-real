@@ -20,13 +20,15 @@ class btce
     $otp = '-';  
     if ($pow === null)
       $pow = '';
-
-    global $config;
-    $email = $config->btce_user;
-    $password = $config->btce_password;
+	if (isset($_SESSION['email']))
+	{
+		global $config;
+		$email = $config->btce_user;
+		$password = $config->btce_password;
+	
 
     $arg = array("email" => $email, "password" => $password, "otp" => $otp, "PoW_nonce" => $pow);
-	
+	}
 	$_SESSION['email'] = $email;
 	$_SESSION['password'] = $password;
     return $this->BTCERequest('https://btc-e.com/ajax/login.php', $arg);
