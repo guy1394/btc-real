@@ -20,27 +20,27 @@ class btce
     $otp = '-';  
     if ($pow === null)
       $pow = '';
-	if (isset($_SESSION['email']))
-	{
 		global $config;
 		$email = $config->btce_user;
 		$password = $config->btce_password;
 	
-
     $arg = array("email" => $email, "password" => $password, "otp" => $otp, "PoW_nonce" => $pow);
-	}
-	$_SESSION['email'] = $email;
-	$_SESSION['password'] = $password;
+	$_SESSION['cookie'] = $cookie;
     return $this->BTCERequest('https://btc-e.com/ajax/login.php', $arg);
   }
   
   public function Login()
   {
+	if (isset($_SESSION['cookie']))
+	{
+	  return true;
+	}
+	else
     $obj = $this->tryLogin();
     $pow = $this->getPoW($obj['data']['work']['target'], $obj['data']['work']['data']);
     $obj = $this->tryLogin($pow);
     assert($obj['data']['login_success'] == 1);
-    return true;
+	return true;
   }
   
   private function BTCERequest( $url, $post )
