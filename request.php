@@ -43,10 +43,18 @@ class request
     curl_close($this->obj);    
   }
   
-  public function Post( $post )
+  public function Post( $post = null )
   {
-    curl_setopt($this->obj, CURLOPT_POST, true);
-    curl_setopt($this->obj, CURLOPT_POSTFIELDS, $post);
+    if ($post !== null)
+    {
+      curl_setopt($this->obj, CURLOPT_POST, true);
+      curl_setopt($this->obj, CURLOPT_POSTFIELDS, $post);
+    }
+    return $this->Get();
+  }
+  
+  public function Get( )
+  {
     $this->result = curl_exec($this->obj);
     return $this;
   }
