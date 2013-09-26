@@ -27,6 +27,14 @@ class btce
     return $this->BTCERequest('https://btc-e.com/ajax/login.php', $arg);
   }
   
+  function GetSiteToken()
+  {
+    $html = $this->BTCERequest('https://btc-e.com/', null, false);
+    list($garbage, $prefetch) = explode("<input id='token' type='hidden' value='", $html);
+    list($token) = explode("'", $prefetch);
+    return $token;
+  }
+  
   public function Login()
   {
     $obj = $this->tryLogin();
@@ -36,12 +44,14 @@ class btce
     return true;
   }
   
-  private function BTCERequest( $url, $post )
+  private function BTCERequest( $url, $post = null, $decode = true )
   {
     $request = new request($url);
     $request->cookie = $this->cookie;
     $res = $request->Post($post)->Result();
     $this->cookie = $request->cookie;
+    if (!$decode)
+      return $res;
     return json_decode($res, true);  
   }
   
