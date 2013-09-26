@@ -91,15 +91,16 @@ class btce_site_functional
     assert(false);
   }
 
-  function getPoW($a, $b)
+  private function getPoW( $a, $b )
   {
-    $c=0;
+    $c = 0;
     do
     {
-      $hash_hex=md5(md5($b.$c));
-      $hash= hexdec($hash_hex);
+      $hash_hex = md5(md5($b.$c));
+      $hash = hexdec($hash_hex);
       ++$c;
-    } while($hash>=$a);
+    } while($hash >= $a);
+    
     return $c;
   }  
 }
