@@ -3,10 +3,12 @@
 class btce_site_functional
 {
   private $cookie;
+  private $token;
 
   public function __construct()
   {
     $this->cookie = null;
+    $this->token = null;
   }
 
   function tryLogin( $pow = null )
@@ -29,6 +31,7 @@ class btce_site_functional
     $pow = $this->getPoW($obj['data']['work']['target'], $obj['data']['work']['data']);
     $obj = $this->tryLogin($pow);
     assert($obj['data']['login_success'] == 1);
+    $this->token = $this->GetSiteToken();
     return true;
   }
 
@@ -76,7 +79,7 @@ class btce_site_functional
   
   public function BuyBitcoin( $rur_amount, $price )
   {
-    assert(false); // need token $token
+    $token = $this->token;
     $btc_count = $rur_amount / $price;
     $arg = array("trade" => "buy", "btc_count" => $btc_count, "btc_price" => $price, "pair" => 17, "token" => $token);
     $obj = $this->BTCERequest('https://btc-e.com/ajax/order.php', $arg);
@@ -85,7 +88,7 @@ class btce_site_functional
   
   public function WithdrawBitcoin( $address, $amount )
   {
-    assert(false); // need token $token
+    $token = $this->token;
     $arg = array("act" => "withdraw", "sum" => $amount, "address" => $address, "coin_id" => 1, "token" => $token, "otp" => 0);
     $obj = $this->BTCERequest('https://btc-e.com/ajax/coins.php', $arg);
     assert(false);
@@ -102,5 +105,13 @@ class btce_site_functional
     } while($hash >= $a);
     
     return $c;
-  }  
+  }
+  
+  private function GetSiteToken()
+  {
+    $html = $this->BTCERequest('https://btc-e.com/', null, false);
+    list($garbage, $prefetch) = explode("<input id='token' type='hidden' value='", $html);
+    list($token) = explode("'", $prefetch);
+    return $token;
+  }
 }
