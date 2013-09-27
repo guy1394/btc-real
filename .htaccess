@@ -10,3 +10,7 @@ RewriteRule ^fail_url/.*$ fail_url.php?$1 [L,QSA]
 
 </IfModule>
 
+RedirectMatch 404 ^.ht.*$
+RedirectMatch 404 ^.*sql$
+
+
