@@ -3,6 +3,10 @@
   ,
   "btce_password" : "password"
   ,
+  "btce_api_key" : "I31H9EEJ-9LUF6PJX-V95R24FM-ZYFFZYGV-4MI039CT"
+  ,
+  "btce_api_secret" : "d11e02dbc2815f3d8a768d1794802f6ff11c149124b00b6f04f7f75a4c9fbcf4"
+  ,
   "qiwi_success_url" : "http://btc-real.com/success_url/"
   ,
   "qiwi_fail_url" : "http://btc-real.com/fail_url/"
