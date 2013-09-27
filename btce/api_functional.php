@@ -6,6 +6,24 @@ class btce_api_functional
   {
   }
   
+  public function __call($name, $arguments)
+  {
+    return $this->btce_query($name, $arguments);
+  }
+  
+  public function SearchQiwiDeposit( $amount )
+  {
+    $obj = $this->TradeHistory();
+    foreach ($obj['return'] as $id => $tr)
+      if ($tr['amount'] == $amount)
+        break;
+    unset($obj);
+    if ($tr['amount'] != $amount)
+      return false;
+    $tr['id'] = $id;
+    return $tr;
+  }
+  
   private function btce_query($method, array $req = array())
   {
     global $config;
