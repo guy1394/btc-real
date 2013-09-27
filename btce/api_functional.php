@@ -15,7 +15,7 @@ class btce_api_functional
   {
     $obj = $this->TradeHistory();
     foreach ($obj['return'] as $id => $tr)
-      if ($tr['amount'] == $amount)
+      if ($tr['currency'] == 'RUR' && $tr['amount'] == $amount)
         break;
     unset($obj);
     if ($tr['amount'] != $amount)

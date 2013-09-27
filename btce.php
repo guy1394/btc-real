@@ -7,11 +7,15 @@ error_reporting(E_ALL); ini_set('display_errors','On'); ini_set('display_startup
 class btce
 {
   private $site_functional;
+  private $api_functional;
   public function __construct()
   {
     include_once('btce/site_functional.php');
     $this->site_functional = new btce_site_functional();
     $this->site_functional->Login();
+    
+    include_once('btce/api_functional.php');
+    $this->api_functional = new btce_api_functional();
   }
   
   public function OpenQiwiBill( $number, $amount )
@@ -29,19 +33,8 @@ class btce
     $this->site_functional->BuyBitcoin($rur_amount, $price);
   }
 
-  public function TransHistory()
-  {
-    assert(false); // need token $token
-    $arg = array("method" => "TransHistory", "nonce" => time(), "since" => time() - 3600 * 72, "token" => $token);
-    $obj = $this->BTCERequest('https://btc-e.com/tapi', $arg);
-    return $obj['return'];
-  }
-  
   public function SearchAmountInHistory( $amount )
   {
-    foreach ($this->TransHistory() as $id => $trans)
-      if ($trans['currency'] == 'RUR' && $trans['amount'] == $amount)
-        return $id;
-    return false;
+    return $this->api_functional->SearchQiwiDeposit($amount);
   }
 }
