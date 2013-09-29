@@ -33,7 +33,7 @@ class main extends api
     $row = db::Query("SELECT \"AddQiwi\"($1::currency, $2::currency, $3::varchar, $4::varchar, $5::inet)",
       array($rur_amount, $cource, $phone, $wallet, _ip_), true);
     $id = $row['AddQiwi'];
-    $row = db::Query("SELECT rur, phone FROM qiwi2btc WHERE id=$1", array($id), true);
+    $row = $this->GetBill($id);
     
     $bill = $this->btce()->OpenQiwiBill($row['phone'], $row['rur'], $id);
     $data = array("id" => $id, "url" => $bill);
@@ -44,8 +44,13 @@ class main extends api
       );
   }
   
+  private function GetBill( $id )
+  {
+    return db::Query("SELECT rur, phone FROM qiwi2btc WHERE id=$1", array($id), true);
+  }
+  
   protected function MakeOrder( $id )
   {
-    
+  
   }
 }
