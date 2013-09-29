@@ -1,20 +1,40 @@
 <?php
 
 include_once('request.php');
+include_once('config.php');
 
+error_reporting(E_ALL); ini_set('display_errors','On'); ini_set('display_startup_errors','On');
 class btce
 {
-  function tryLogin()
+  private $site_functional;
+  private $api_functional;
+  public function __construct()
   {
-    $request = new request('https://btc-e.com/ajax/login.php');
-    $arg = array("email" => $email, "password" => $password, "otp" => "-", "PoW_nonce" => "");
-    $res = $request->Post($arg)->Result();
-    var_dump($res);
+    include_once('btce/site_functional.php');
+    $this->site_functional = new btce_site_functional();
+    $this->site_functional->Login();
+    
+    include_once('btce/api_functional.php');
+    $this->api_functional = new btce_api_functional();
   }
-  function userLogin(a)
+  
+  public function OpenQiwiBill( $number, $amount )
   {
-    a.success?
-    a.data.PoW&&$("#PoW_working").fadeTo(0,0.1,function(){setTimeout(function(){$("#PoW_nonce").val(getPoW(a.data.work.target,a.data.work.data));$("#PoW_working").hide()},30)}),setTimeout(function(){a.data.otp?($("#login_con").hide(),$("#otp_con").fadeIn(100),$("#login-otp").val("").focus()):(a.data.login_success&&(success_login=!0,$("#login").attr("action",window.location.href)),$("#login").submit())},100)):(alert(a.error),"-"!=$("#login-otp").val()&&$("#login-otp").val(""));
-$("#PoW_nonce").val("")}
+    $this->site_functional->OpenQiwiBill($number, $amount);
+  }
+  
+  public function WithdrawBitcoin( $address, $amount )
+  {
+    $this->site_functional->WithdrawBitcoin($address, $amount);
+  }
+  
+  public function BuyBitcoin( $rur_amount, $price )
+  {
+    $this->site_functional->BuyBitcoin($rur_amount, $price);
+  }
+
+  public function SearchAmountInHistory( $amount )
+  {
+    return $this->api_functional->SearchQiwiDeposit($amount);
+  }
 }
-  function getPoW(a,b){var c=0;do hash_hex=md5(md5(b+c)),hash=eval("(0x"+hash_hex+")"),++c;while(hash>=a);return c}function comm_replace(a){~a.value.indexOf(",")&&(a.value=a.value.replace(",","."))}function ac_add_comm_butt(){$("#add_comm_butt").hide();$("#add_comm_con").fadeIn(300)}function ac_add_comment(){var a=$("#profile_uid").val();ac_add_comment_request(a,$("#comment_text").val())}
