@@ -20,17 +20,17 @@ class btce
   
   public function OpenQiwiBill( $number, $amount )
   {
-    $this->site_functional->OpenQiwiBill($number, $amount);
+    return $this->site_functional->OpenQiwiBill($number, $amount);
   }
   
   public function WithdrawBitcoin( $address, $amount )
   {
-    $this->site_functional->WithdrawBitcoin($address, $amount);
+    return $this->site_functional->WithdrawBitcoin($address, $amount);
   }
   
   public function BuyBitcoin( $rur_amount, $price )
   {
-    $this->site_functional->BuyBitcoin($rur_amount, $price);
+    return $this->site_functional->BuyBitcoin($rur_amount, $price);
   }
 
   public function SearchAmountInHistory( $amount )

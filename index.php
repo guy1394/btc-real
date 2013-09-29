@@ -5,7 +5,7 @@ if ($_SERVER['REMOTE_ADDR'] != '127.0.0.1')
 else
   define("_ip_", explode(',', $_SERVER["HTTP_X_FORWARDED_FOR"])[0]);
 
-//error_reporting(E_ALL); ini_set('display_errors', '1');
+error_reporting(E_ALL); ini_set('display_errors', '1');
 function phoxy_conf()
 {
   $ret = phoxy_default_conf();
@@ -13,5 +13,6 @@ function phoxy_conf()
   return $ret;
 }
 
-include('connect.php');
-include('phoxy/index.php');
+include_once('config.php');
+include_once('connect.php');
+include_once('phoxy/index.php');
