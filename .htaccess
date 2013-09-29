@@ -5,8 +5,8 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-RewriteRule ^success_url/.*$ success_url.php?$1 [L,QSA]
-RewriteRule ^fail_url/.*$ fail_url.php?$1 [L,QSA]
+RewriteRule ^success_url/(\d*)/(.*)$ success_url.php?id=$1&$2 [L,QSA]
+RewriteRule ^fail_url/(\d*)/(.*)$ fail_url.php?id=$1&$2 [L,QSA]
 RewriteRule ^api/(.*)$ index.php?api=$1 [L,QSA]
 RewriteRule ^libs/(.*)\.js$ phoxy/libs/$1.js [L,QSA]
 RewriteRule ^phoxy.js$ phoxy/phoxy.js [L,QSA]

@@ -35,12 +35,17 @@ class main extends api
     $id = $row['AddQiwi'];
     $row = db::Query("SELECT rur, phone FROM qiwi2btc WHERE id=$1", array($id), true);
     
-    $bill = $this->btce()->OpenQiwiBill($row['phone'], $row['rur']);
+    $bill = $this->btce()->OpenQiwiBill($row['phone'], $row['rur'], $id);
     $data = array("id" => $id, "url" => $bill);
     return array(
       'error' => var_export($data, true),
       'data' => $data,
       'reset' => $bill
       );
+  }
+  
+  protected function MakeOrder( $id )
+  {
+    
   }
 }
