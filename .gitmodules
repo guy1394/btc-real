@@ -1,0 +1,3 @@
+[submodule "pgsql_php"]
+	path = pgsql_php
+	url = http://github.com/Enelar/pgsql_php
