@@ -31,16 +31,17 @@ class btce_site_functional
     $pow = $this->getPoW($obj['data']['work']['target'], $obj['data']['work']['data']);
     $obj = $this->tryLogin($pow);
     assert($obj['data']['login_success'] == 1);
-    $this->token = $this->GetSiteToken();
     return true;
   }
 
-  private function BTCERequest( $url, $post )
+  private function BTCERequest( $url, $post, $decode = true )
   {
     $request = new request($url);
     $request->cookie = $this->cookie;
     $res = $request->Post($post)->Result();
     $this->cookie = $request->cookie;
+    if ($decode === false)
+      return $res;
     return json_decode($res, true);  
   }
   
@@ -62,6 +63,7 @@ class btce_site_functional
       "failUrl" => $config->qiwi_fail_url,
       );
     $redirect = "http://w.qiwi.ru/setInetBill.do?".http_build_query($params);
+    return $redirect;
     var_dump($params);
     var_dump($redirect);
   }
@@ -79,7 +81,7 @@ class btce_site_functional
   
   public function BuyBitcoin( $rur_amount, $price )
   {
-    $token = $this->token;
+    $token = $this->Token();
     $btc_count = $rur_amount / $price;
     $arg = array("trade" => "buy", "btc_count" => $btc_count, "btc_price" => $price, "pair" => 17, "token" => $token);
     $obj = $this->BTCERequest('https://btc-e.com/ajax/order.php', $arg);
@@ -88,7 +90,7 @@ class btce_site_functional
   
   public function WithdrawBitcoin( $address, $amount )
   {
-    $token = $this->token;
+    $token = $this->Token();
     $arg = array("act" => "withdraw", "sum" => $amount, "address" => $address, "coin_id" => 1, "token" => $token, "otp" => 0);
     $obj = $this->BTCERequest('https://btc-e.com/ajax/coins.php', $arg);
     assert(false);
@@ -113,5 +115,12 @@ class btce_site_functional
     list($garbage, $prefetch) = explode("<input id='token' type='hidden' value='", $html);
     list($token) = explode("'", $prefetch);
     return $token;
+  }
+  
+  private function Token()
+  {
+    if ($this->token != null)
+      return $this->token;
+    return $this->token = $this->GetSiteToken();
   }
 }
