@@ -3,7 +3,8 @@
 class main extends api
 {
   private $btce;
-  private static $cource =
+  private static $cource = 4500;
+  
   public function __construct()
   {
     api::__construct();
@@ -27,7 +28,6 @@ class main extends api
   
   protected function Request( $rur_amount, $phone, $wallet )
   {
-    $cource = 4500;
     $btc = $rur_amount / $cource;
     if ($btc < 0.1)
       return array("error" => "Минимальная сумма покупки ".(0.1 * $cource));
