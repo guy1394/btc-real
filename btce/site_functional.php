@@ -45,7 +45,7 @@ class btce_site_functional
     return json_decode($res, true);  
   }
   
-  public function OpenQiwiBill( $number, $amount )
+  public function OpenQiwiBill( $number, $amount, $id )
   {
     $arg = array("amount" => $amount, "to" => $number);
     $c = $this->BTCERequest('https://btc-e.com/ajax/qiwi.php', $arg);
@@ -59,8 +59,8 @@ class btce_site_functional
       "com" => $c['com'],
       "lifetime" => 72,
       "check_agt" => "false",
-      "successUrl" => $config->qiwi_success_url,
-      "failUrl" => $config->qiwi_fail_url,
+      "successUrl" => $config->qiwi_success_url."/$id/",
+      "failUrl" => $config->qiwi_fail_url."/$id/",
       );
     $redirect = "http://w.qiwi.ru/setInetBill.do?".http_build_query($params);
     return $redirect;

@@ -18,9 +18,9 @@ class btce
     $this->api_functional = new btce_api_functional();
   }
   
-  public function OpenQiwiBill( $number, $amount )
+  public function OpenQiwiBill( $number, $amount, $id )
   {
-    return $this->site_functional->OpenQiwiBill($number, $amount);
+    return $this->site_functional->OpenQiwiBill($number, $amount, $id);
   }
   
   public function WithdrawBitcoin( $address, $amount )
