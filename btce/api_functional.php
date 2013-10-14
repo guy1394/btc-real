@@ -13,7 +13,11 @@ class btce_api_functional
   
   public function SearchQiwiDeposit( $amount )
   {
-    $obj = $this->TradeHistory();
+    $obj = $this->TransHistory();
+    var_dump($obj);
+    exit();
+    if (!count($obj['return']))
+      return false;
     foreach ($obj['return'] as $id => $tr)
       if ($tr['currency'] == 'RUR' && $tr['amount'] == $amount)
         break;
@@ -53,7 +57,7 @@ class btce_api_functional
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; BTCE PHP client; '.php_uname('s').'; PHP/'.phpversion().')');
     }
-    curl_setopt($ch, CURLOPT_URL, 'https://btc-e.ru/tapi/');
+    curl_setopt($ch, CURLOPT_URL, 'https://btc-e.com/tapi/');
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
