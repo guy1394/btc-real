@@ -3,7 +3,7 @@
 class main extends api
 {
   private $btce;
-  private static $cource = 4500;
+  private static $cource = 4800;
   
   public function __construct()
   {
@@ -11,9 +11,15 @@ class main extends api
     $this->btce = null;
   }
   
+  public function GetCource()
+  {
+    return self::$cource;
+  }
+  
   protected function Reserve()
   {
-    //if (_ip_ == '213.21.7.6')
+    if (_ip_ == '213.21.7.6')
+      return array("design" => "main/main");
     //  return $this->Request(400, 9213243303, 'wallet');
     return array("error" => "Coming soon");
   }
@@ -28,19 +34,21 @@ class main extends api
   
   protected function Request( $rur_amount, $phone, $wallet )
   {
-    $btc = $rur_amount / $cource;
+    $btc = $rur_amount / $this->GetCource();
     if ($btc < 0.1)
       return array("error" => "Минимальная сумма покупки ".(0.1 * $cource));
     $row = db::Query("SELECT \"AddQiwi\"($1::currency, $2::currency, $3::varchar, $4::varchar, $5::inet)",
-      array($rur_amount, $cource, $phone, $wallet, _ip_), true);
+      array($rur_amount, $this->GetCource(), $phone, $wallet, _ip_), true);
     $id = $row['AddQiwi'];
     $row = $this->GetBill($id);
     
-    $actual_price = db::Query("SELECT * FROM allowed_qiwi_orders WHERE amount=$1", $row['rur']);
-    $bill = $this->btce()->OpenQiwiBill($row['phone'], $actual_price['to_pay'], $id);
+    $actual_price = db::Query("SELECT * FROM allowed_qiwi_orders WHERE amount=$1::currency", array($row['rur']), true);
+    $bill = $this->btce()->OpenQiwiBill($row['phone'], $actual_price["to_pay"], $id);
     $data = array("id" => $id, "url" => $bill);
     return array(
-      'error' => var_export($data, true),
+      'error' => "Счет успешно выписан.\n".
+      "Сумма к оплате {$actual_price["amount"]}+5%(комиссия Qiwi)={$actual_price["to_pay"]}\n".
+      "Вы получите ".($actual_price["amount"] / $this->GetCource())." BTC",
       'data' => $data,
       'reset' => $bill
       );

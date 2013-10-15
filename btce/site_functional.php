@@ -57,7 +57,7 @@ class btce_site_functional
       "to" => $number,
       "summ" => $amount,
       "com" => $c['com'],
-      "lifetime" => 72,
+      "lifetime" => $config->qiwi_recept_lifetime_hours,
       "check_agt" => "false",
       "successUrl" => $config->qiwi_success_url."/$id/",
       "failUrl" => $config->qiwi_fail_url."/$id/",
