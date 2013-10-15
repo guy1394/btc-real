@@ -73,7 +73,7 @@ BEGIN
        RETURNING INTO _t id;
       RETURN _t;
     END IF;
-    _rur = _rur + 0.01;
+    _rur = _rur + 1;
   END LOOP;  
 END;
 $BODY$

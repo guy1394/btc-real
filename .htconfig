@@ -10,4 +10,6 @@
   "qiwi_success_url" : "http://btc-real.com/success_url/"
   ,
   "qiwi_fail_url" : "http://btc-real.com/fail_url/"
+  ,
+  "qiwi_recept_lifetime_hours" : 72
 }
