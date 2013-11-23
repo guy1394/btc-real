@@ -69,11 +69,11 @@ p { margin: 0; padding: 0;}
 .col-md-6 .btn.btn-link {
     margin: 0;
     padding: 0;
+    box-shadow: none;
 }
 .col.col-md-12 .navbar-form {
     margin-bottom: 40px;
     margin-top: 20px;
-    box-shadow: none;
 }
 .col-md-6 .form-control {
     box-shadow: 0 0 0 2px #FFFFFF inset, 0 2px 5px 0 #000000 inset;
@@ -166,17 +166,20 @@ p { margin: 0; padding: 0;}
 .col-md-6.bitcoin div.title,
 .col-md-6.mtgox div.title {
     width: 135px;
+    clear: left;
 }
 .col-md-6.bitcoin div:nth-child(4),
 .col-md-6.bitcoin div:nth-child(7),
 .col-md-6.bitcoin div:nth-child(10),
 .col-md-6.bitcoin div:nth-child(13) {
-    float: right;
+    float: left;
     font-size: 18px;
+    margin-left: 20px;
     padding-top: 5px;
 }
-.footer-nav a {
+.bottom-nav a {
     border: 0 none;
+    float: none !important;
     height: 39px;
     margin: 7px 0 5px;
     width: 135px;
@@ -193,3 +196,8 @@ a.forum:active { background: url("/bootstrap/img/forum_03.png");}
 a.link { background: url("/bootstrap/img/link_01.png");}
 a.link:hover { background: url("/bootstrap/img/link_02.png");}
 a.link:active { background: url("/bootstrap/img/link_03.png");}
+.text-center.text-muted.copyright {
+    color: #FFFFFF;
+    opacity: 0.5;
+    padding: 2px;
+}
