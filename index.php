@@ -12,7 +12,7 @@ define("_sub", isset($_GET['sub']) ? "/".$_GET['sub'] : "");
 function phoxy_conf()
 {
   $ret = phoxy_default_conf();
-  $ret['site'] = 'http://btc-real.com/';
+  $ret['site'] = 'http://btc/';
   $ret['api_dir'] .= _sub;
   return $ret;
 }
