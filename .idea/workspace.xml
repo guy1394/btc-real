@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9adfc3a-c302-4cd2-8344-a4f24305b375" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bootstrap/css/warmwave.css" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bootstrap/css/bootstrap-responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bootstrap/css/bootstrap-responsive.min.css" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap/css/bootstrap.css" afterPath="$PROJECT_DIR$/bootstrap/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/bootstrap/css/bootstrap.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/main.php" afterPath="$PROJECT_DIR$/api/main.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap/css/warmwave.css" afterPath="$PROJECT_DIR$/bootstrap/css/warmwave.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="btc-real.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,7 +86,7 @@
       <file leaf-file-name="main.ejs" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ejs/main/main.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="0" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="1485">
+            <state line="35" column="0" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="1485">
               <folding />
             </state>
           </provider>
@@ -109,7 +104,7 @@
       <file leaf-file-name="warmwave.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bootstrap/css/warmwave.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="4" selection-start="2916" selection-end="2916" vertical-scroll-proportion="0.20953757" vertical-offset="920" max-vertical-offset="3030">
+            <state line="70" column="15" selection-start="2911" selection-end="2911" vertical-scroll-proportion="1.517341" vertical-offset="0" max-vertical-offset="3000">
               <folding />
             </state>
           </provider>
@@ -444,13 +439,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ejs/main/main.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1485">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.htconfig">
       <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
         <state />
@@ -496,9 +484,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ejs/main/main.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="0" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="1485">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bootstrap/css/warmwave.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="4" selection-start="2916" selection-end="2916" vertical-scroll-proportion="0.20953757" vertical-offset="920" max-vertical-offset="3030">
+        <state line="70" column="15" selection-start="2911" selection-end="2911" vertical-scroll-proportion="1.517341" vertical-offset="0" max-vertical-offset="3000">
           <folding />
         </state>
       </provider>
