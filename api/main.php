@@ -19,7 +19,7 @@ class main extends api
   protected function Reserve()
   {
     //if (_ip_ == '213.21.7.6')
-      return array("design" => "main/main");
+      return array("design" => "main/main", "script" => "main", "routeline" => "OnMainLoad");
     //  return $this->Request(400, 9213243303, 'wallet');
     return array("error" => "Coming soon");
   }
