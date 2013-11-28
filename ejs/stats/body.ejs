@@ -1,21 +1,51 @@
+<%
+  function ToString( num )
+  {
+    if (num > 1000 || num < 0)
+      return "BAD";
+    a = num % 10;
+    b = Math.floor(num /= 10) % 10;
+    c = Math.floor(num /= 10) % 10;
+    return "" + c + b + a;
+  }
+  function Comma( num )
+  {
+    if (typeof num !== 'number')
+      return num;
+    parts = [];
+    for (i = 0; num !== 0; i++)
+    {
+      parts[i] = ToString(num % 1000);
+      num /= 1000;
+      num = Math.floor(num);
+    }
+    
+    ret = "";
+    for (i = parts.length - 1; i > 0; i--)
+      ret += parts[i] + ",";
+    ret += parts[i];
+    return ret;
+  }
+%>
+
 <div class="row bitcoin_and_mtgox">
   <hr>
   <hr class="white">
   <div class="col-md-6 bitcoin">
     <h2>BitCoin</h2>
-    <div class="title">Блоков:</div><div>999,999</div><div>24:60</div>
-    <div class="title">Сложность:</div><div>999,999</div><div>24:60</div>
-    <div class="title">Прогноз:</div><div>999,999</div><div>24:60</div>
-    <div class="title">Мощность:</div><div>999,999</div><div>24:60</div>
+    <div class="title">Блоков:</div><div><%= Comma(bitcoin.blocks) %></div><div><%= bitcoin.time %></div>
+    <div class="title">Сложность:</div><div><%= Comma(bitcoin.difficulty) %></div><div><%= bitcoin.time %></div>
+    <div class="title">Прогноз:</div><div><%= Comma(bitcoin.forecast) %></div><div><%= bitcoin.time %></div>
+    <div class="title">Мощность:</div><div><%= Comma(bitcoin.power) %></div><div><%= bitcoin.time %></div>
     <br>
   </div>
   <div class="col-md-6 mtgox">
     <h2>MtGox</h2>
-    <div class="title">Last:</div><div>999,999</div>
-    <div class="title">High:</div><div>999,999</div>
-    <div class="title">Low:</div><div>999,999</div>
-    <div class="title">Buy:</div><div>999,999</div>
-    <div class="title">Sell:</div><div>999,999</div>
-    <div class="title">Volume:</div><div>999,999</div>
+    <div class="title">Last:</div><div><%= Comma(mtgox.last) %></div>
+    <div class="title">High:</div><div><%= Comma(mtgox.high) %></div>
+    <div class="title">Low:</div><div><%= Comma(mtgox.low) %></div>
+    <div class="title">Buy:</div><div><%= Comma(mtgox.buy) %></div>
+    <div class="title">Sell:</div><div><%= Comma(mtgox.sell) %></div>
+    <div class="title">Volume:</div><div><%= Comma(mtgox.volume) %></div>
   </div>
 </div>
